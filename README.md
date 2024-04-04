@@ -13,6 +13,8 @@ https://react-invoice-maker.netlify.app/
 ```
 git clone https://github.com/fasilofficial/react-invoice-generator.git
 
+cd react-invoice-generator
+
 npm install
 
 npm start

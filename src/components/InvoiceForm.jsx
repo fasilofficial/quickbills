@@ -35,7 +35,7 @@ const InvoiceForm = () => {
 
   const [items, setItems] = useState([
     {
-      id: 0,
+      id: (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
       name: "",
       description: "",
       price: "1.00",

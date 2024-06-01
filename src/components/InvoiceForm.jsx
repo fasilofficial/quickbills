@@ -314,11 +314,18 @@ const InvoiceForm = () => {
                 <option value="$">USD (United States Dollar)</option>
                 <option value="£">GBP (British Pound Sterling)</option>
                 <option value="₹">INR (Indian Rupee)</option>
+                <option value="৳">BDT (Bangladeshi Taka)</option>
                 <option value="¥">JPY (Japanese Yen)</option>
-                <option value="$">CAD (Canadian Dollar)</option>
-                <option value="$">AUD (Australian Dollar)</option>
-                <option value="$">SGD (Singapore Dollar)</option>
-                <option value="¥">CNY (Chinese Renminbi)</option>
+                <option value="€">EUR (Euro)</option>
+                <option value="₽">RUB (Russian Ruble)</option>
+                <option value="₩">KRW (South Korean Won)</option>
+                <option value="₦">NGN (Nigerian Naira)</option>
+                <option value="R$">BRL (Brazilian Real)</option>
+                <option value="₪">ILS (Israeli New Shekel)</option>
+                <option value="₴">UAH (Ukrainian Hryvnia)</option>
+                <option value="₸">KZT (Kazakhstani Tenge)</option>
+                <option value="₡">CRC (Costa Rican Colón)</option>
+                <option value="¥">CNY (Chinese Yuan)</option>
                 <option value="₿">BTC (Bitcoin)</option>
               </Form.Select>
             </Form.Group>

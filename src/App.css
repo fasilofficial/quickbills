@@ -1,88 +1,153 @@
-body, html {
-  font-size: 0.9rem;
-  background: #f2f3f7
-}
-body, .form-control {
-  font-size: 0.9rem
-}
-body,
-html,
-#root,
+/* App Container */
 .App {
-  min-height: 100vh
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Typography & Visual Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Button & Form Overrides */
 .btn {
-  font-size: 0.9rem;
   font-weight: 500;
-  padding: 0.66rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 0.5rem;
-  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
-}
-.App-link {
-  color: #61dafb;
+  transition: all 0.15s ease-in-out;
 }
 
-.btn-light {
-  border-color: #dedede
+.btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
 }
 
-.btn-light:hover {
-  border-color: #dedede;
-  background-color: #f3f3f3
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
 }
 
-.shadow {
-  box-shadow: 0 .1rem .1rem rgba(0,0,0,.05)!important
+.btn-outline-primary {
+  color: #2563eb;
+  border-color: #93c5fd;
 }
 
-.modal-content,
+.btn-outline-primary:hover {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #60a5fa;
+}
+
+.form-control, .form-select {
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.925rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+/* Card Styling */
 .card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Header & Nav */
+.qb-header {
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 1020;
+}
+
+.hover-primary:hover {
+  color: #2563eb !important;
+}
+
+/* Guide Content Styling */
+.qb-guide-article {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.qb-guide-article h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.qb-guide-article p {
+  color: #334155;
+  font-size: 1.025rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.qb-guide-article ul, .qb-guide-article ol {
+  color: #334155;
+  font-size: 1.025rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.qb-guide-article li {
+  margin-bottom: 0.5rem;
+}
+
+/* Ad Container */
+.qb-ad-container {
+  max-width: 728px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qb-ad-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal styling */
+.qb-invoice-modal .modal-content {
+  border-radius: 0.85rem;
   overflow: hidden;
-  border-radius: 0.756rem
-}
-
-hr {
-  opacity: 0.1
-}
-
-.table th {
-  border-top: 1px solid #0000001a;
-  border-bottom: 1px solid #0000001a;
-  border-bottom-color: #0000001a!important
-}
-.table td {
-   text-align: left;
-}
-.table tr th:first-child,
-.table tr td:first-child {
-  padding-left: 0
-}
-.table tr th:last-child,
-.table tr td:last-child {
-  padding-right: 0
-}
-
-.form-control {
-  background: #f5f7f9;
-  font-weight: 400;
-  padding: .5rem .75rem;
-  border: none
-}
-.form-control:hover {
-  background: #f5f7f9;
-}
-.form-control::placeholder,
-.form-control::-ms-input-placeholder,
-.form-control:-ms-input-placeholder {
-  color: #9fa8b0
-}
-.form-control:focus {
-  background: #f5f7f9;
+  border: 1px solid #cbd5e1;
 }
 
 #invoiceCapture {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  color: #0f172a;
 }

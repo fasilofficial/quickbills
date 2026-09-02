@@ -47,32 +47,166 @@ a:hover {
 }
 
 /* Print Optimization */
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm;
+}
+
 @media print {
+  /* Hide all background app chrome and page contents when modal is printing */
+  body.modal-open #root,
+  body.printing-invoice #root,
+  .modal-backdrop,
+  .modal-header,
+  .modal-footer,
   header,
   footer,
-  .modal-footer,
-  .modal-header button,
   .qb-breadcrumbs,
-  .qb-ad-container {
+  .qb-ad-wrapper,
+  .qb-ad-container,
+  .btn,
+  button {
     display: none !important;
   }
 
+  /* Reset document flow and colors */
+  html,
   body {
-    background: white !important;
-  }
-
-  .modal-dialog {
-    max-width: 100% !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
     margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .modal-content {
+  body.modal-open,
+  body.printing-invoice {
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  /* Convert Bootstrap Modal into a clean flat paper layout */
+  .modal {
+    position: static !important;
+    display: block !important;
+    overflow: visible !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
     border: none !important;
     box-shadow: none !important;
   }
 
-  #invoiceCapture {
-    padding: 0 !important;
+  .modal-dialog {
+    position: static !important;
+    max-width: 100% !important;
     width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .modal-content {
+    position: static !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .modal-body {
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Pure, high-resolution invoice canvas */
+  #invoiceCapture {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
+  #invoiceCapture h2 {
+    font-size: 18pt !important;
+  }
+
+  #invoiceCapture h3 {
+    font-size: 14pt !important;
+  }
+
+  #invoiceCapture h4 {
+    font-size: 12pt !important;
+  }
+
+  #invoiceCapture .table-responsive {
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  #invoiceCapture table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 10pt !important;
+  }
+
+  #invoiceCapture th {
+    background-color: #f8fafc !important;
+    color: #1e293b !important;
+    font-size: 9pt !important;
+    font-weight: 700 !important;
+    border-top: 1px solid #cbd5e1 !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+    padding: 5pt 6pt !important;
+  }
+
+  #invoiceCapture td {
+    padding: 5pt 6pt !important;
+    font-size: 9pt !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  #invoiceCapture tr {
+    page-break-inside: avoid !important;
+  }
+
+  #invoiceCapture .badge {
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+
+  #invoiceCapture .text-primary {
+    color: #2563eb !important;
+  }
+
+  #invoiceCapture .text-dark {
+    color: #0f172a !important;
+  }
+
+  #invoiceCapture .text-secondary,
+  #invoiceCapture .text-muted {
+    color: #475569 !important;
   }
 }

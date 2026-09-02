@@ -48,8 +48,17 @@ const InvoiceModal = ({
   };
 
   const handlePrint = () => {
+    document.body.classList.add("printing-invoice");
     window.print();
   };
+
+  React.useEffect(() => {
+    const handleAfterPrint = () => {
+      document.body.classList.remove("printing-invoice");
+    };
+    window.addEventListener("afterprint", handleAfterPrint);
+    return () => window.removeEventListener("afterprint", handleAfterPrint);
+  }, []);
 
   const hasTax = parseFloat(taxAmount) > 0;
   const hasDiscount = parseFloat(discountAmount) > 0;

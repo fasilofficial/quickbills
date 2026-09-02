@@ -131,7 +131,8 @@ const InvoiceForm = ({ initialData }) => {
   };
 
   const onItemizedItemEdit = (evt) => {
-    const { id, name, value } = evt.target;
+    const id = evt.target.dataset.id || evt.target.id;
+    const { name, value } = evt.target;
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, [name]: value } : item
     );
@@ -180,7 +181,7 @@ const InvoiceForm = ({ initialData }) => {
   };
 
   return (
-    <div className="qb-invoice-generator-container w-100">
+    <div className="qb-invoice-generator-container google-anno-skip w-100">
       <Form onSubmit={openModal}>
         <Row className="g-4">
           {/* Main Invoice Card (Left) */}
@@ -234,7 +235,7 @@ const InvoiceForm = ({ initialData }) => {
                     <Col xs={12} sm={4}>
                       <Form.Group controlId="dateOfIssue">
                         <Form.Label className="fw-semibold text-dark small mb-1">
-                          Due Date
+                          Due Date (Optional)
                         </Form.Label>
                         <Form.Control
                           type="date"
@@ -242,7 +243,6 @@ const InvoiceForm = ({ initialData }) => {
                           name="dateOfIssue"
                           onChange={handleChange(setDateOfIssue)}
                           className="bg-white border"
-                          required
                         />
                       </Form.Group>
                     </Col>
@@ -294,19 +294,18 @@ const InvoiceForm = ({ initialData }) => {
                       </Form.Group>
                       <Form.Group className="mb-2">
                         <Form.Control
-                          placeholder="Email address (e.g. contact@business.com)"
+                          placeholder="Email address (optional)"
                           value={billFromEmail}
                           type="email"
                           name="billFromEmail"
                           onChange={handleChange(setBillFromEmail)}
                           autoComplete="email"
                           className="bg-white border"
-                          required
                         />
                       </Form.Group>
                       <Form.Group>
                         <Form.Control
-                          placeholder="Billing address, city, tax ID"
+                          placeholder="Billing address, city, tax ID (optional)"
                           value={billFromAddress}
                           as="textarea"
                           rows={2}
@@ -314,7 +313,6 @@ const InvoiceForm = ({ initialData }) => {
                           autoComplete="address"
                           onChange={handleChange(setBillFromAddress)}
                           className="bg-white border"
-                          required
                         />
                       </Form.Group>
                     </div>
@@ -342,19 +340,18 @@ const InvoiceForm = ({ initialData }) => {
                       </Form.Group>
                       <Form.Group className="mb-2">
                         <Form.Control
-                          placeholder="Client email address"
+                          placeholder="Client email address (optional)"
                           value={billToEmail}
                           type="email"
                           name="billToEmail"
                           onChange={handleChange(setBillToEmail)}
                           autoComplete="email"
                           className="bg-white border"
-                          required
                         />
                       </Form.Group>
                       <Form.Group>
                         <Form.Control
-                          placeholder="Client physical/mailing address"
+                          placeholder="Client physical/mailing address (optional)"
                           value={billToAddress}
                           as="textarea"
                           rows={2}
@@ -362,7 +359,6 @@ const InvoiceForm = ({ initialData }) => {
                           autoComplete="address"
                           onChange={handleChange(setBillToAddress)}
                           className="bg-white border"
-                          required
                         />
                       </Form.Group>
                     </div>
@@ -433,6 +429,19 @@ const InvoiceForm = ({ initialData }) => {
                     rows={3}
                     className="bg-white border"
                   />
+                </div>
+
+                {/* Mobile-Only Review Button */}
+                <div className="d-lg-none mt-4 pt-3 border-top">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    size="lg"
+                    className="w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2"
+                  >
+                    <BiCheckCircle size={20} />
+                    <span>Review Invoice</span>
+                  </Button>
                 </div>
               </Card.Body>
             </Card>

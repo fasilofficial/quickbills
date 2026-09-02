@@ -77,7 +77,7 @@ const InvoiceModal = ({
       </Modal.Header>
 
       <Modal.Body className="p-0">
-        <div id="invoiceCapture" className="p-4 p-md-5 bg-white">
+        <div id="invoiceCapture" className="google-anno-skip p-4 p-md-5 bg-white">
           {/* Invoice Header */}
           <div className="d-flex flex-row justify-content-between align-items-start border-bottom pb-4 mb-4">
             <div>

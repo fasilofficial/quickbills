@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative Grid Pattern -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Logo Icon -->
+  <g transform="translate(100, 100)">
+    <rect width="80" height="80" rx="18" fill="#2563eb"/>
+    <path d="M25 20h20l15 15v25a5 5 0 0 1-5 5H25a5 5 0 0 1-5-5V25a5 5 0 0 1 5-5z" fill="#ffffff"/>
+    <path d="M45 20v15h15" fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round"/>
+    <line x1="30" y1="40" x2="50" y2="40" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+    <line x1="30" y1="50" x2="44" y2="50" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="205" y="155" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="-1">QuickBills</text>
+
+  <text x="100" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" fill="#ffffff" letter-spacing="-1.5">Free Online Invoice Generator</text>
+  
+  <text x="100" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">Create professional invoices quickly and easily in your browser.</text>
+
+  <rect x="100" y="400" width="340" height="54" rx="12" fill="url(#accent)"/>
+  <text x="135" y="436" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="#ffffff">No Sign-up • 100% Free</text>
+
+  <!-- Feature Tags -->
+  <g transform="translate(100, 510)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" fill="#64748b">
+    <text x="0" y="0">✓ Instant PDF Export</text>
+    <text x="250" y="0">✓ Multi-Currency</text>
+    <text x="470" y="0">✓ Tax &amp; Discount Calculation</text>
+    <text x="800" y="0">✓ Private &amp; Client-Side</text>
+  </g>
+</svg>

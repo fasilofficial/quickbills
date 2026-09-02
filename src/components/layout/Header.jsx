@@ -1,13 +1,40 @@
-import React, { useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import { BiFile, BiMenu, BiX } from "react-icons/bi";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const closeMenu = () => setMobileMenuOpen(false);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  const handleCreateInvoiceClick = (e) => {
+    closeMenu();
+    if (location.pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById("invoice-generator-section");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/invoice");
+    }
+  };
 
   const isCurrent = (path) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -39,7 +66,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="d-none d-md-flex align-items-center gap-4">
+          <nav className="d-none d-md-flex align-items-center gap-4" aria-label="Main Navigation">
             <NavLink
               to="/invoice"
               className={({ isActive }) =>
@@ -84,12 +111,13 @@ const Header = () => {
 
           {/* Right CTA */}
           <div className="d-none d-md-flex align-items-center gap-3">
-            <Link
-              to="/invoice"
-              className="btn btn-primary fw-semibold px-4 py-2 rounded-3 text-white text-decoration-none shadow-sm"
+            <button
+              type="button"
+              onClick={handleCreateInvoiceClick}
+              className="btn btn-primary fw-semibold px-4 py-2 rounded-3 text-white border-0 shadow-sm"
             >
               Create Invoice
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -100,6 +128,7 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
             >
               {mobileMenuOpen ? <BiX size={26} /> : <BiMenu size={26} />}
             </button>
@@ -108,8 +137,8 @@ const Header = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="d-md-none border-top py-3 animate-fade-in">
-            <nav className="d-flex flex-column gap-2 mb-3">
+          <div id="mobile-nav-drawer" className="d-md-none border-top py-3 animate-fade-in">
+            <nav className="d-flex flex-column gap-2 mb-3" aria-label="Mobile Navigation">
               <Link
                 to="/invoice"
                 onClick={closeMenu}
@@ -166,13 +195,13 @@ const Header = () => {
               </Link>
             </nav>
             <div className="pt-2 px-1">
-              <Link
-                to="/invoice"
-                onClick={closeMenu}
-                className="btn btn-primary w-100 fw-semibold py-2 rounded-3 text-white text-decoration-none text-center shadow-sm d-block"
+              <button
+                type="button"
+                onClick={handleCreateInvoiceClick}
+                className="btn btn-primary w-100 fw-semibold py-2 rounded-3 text-white border-0 text-center shadow-sm d-block"
               >
                 Create Invoice
-              </Link>
+              </button>
             </div>
           </div>
         )}

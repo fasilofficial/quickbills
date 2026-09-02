@@ -75,6 +75,16 @@ export const guidesData = [
         ]
       }
     ],
+    faqs: [
+      {
+        q: "Can I issue an invoice before delivering the work?",
+        a: "Yes. Invoicing upfront for an agreed deposit (such as 30% or 50% retainer) is standard practice for custom commissions, creative projects, and contracted construction work. Label the line item 'Upfront Project Deposit' and reference the master agreement."
+      },
+      {
+        q: "What should I do if a client requests revisions to an invoice?",
+        a: "Never overwrite an existing invoice number. Reissue the document with a clear revision indicator (e.g., INV-1002-R1) and state in the notes which line items were amended for bookkeeping clarity."
+      }
+    ],
     relatedGuides: ["what-should-an-invoice-include", "invoice-payment-terms", "how-to-number-invoices"],
     relatedTemplates: ["simple-invoice", "freelance-invoice"]
   },
@@ -145,6 +155,16 @@ export const guidesData = [
         ]
       }
     ],
+    faqs: [
+      {
+        q: "Is a physical handwritten signature required on a digital invoice?",
+        a: "In the vast majority of commercial jurisdictions, a physical signature is not required on standard commercial invoices. Clear electronic transmission with complete seller and buyer credentials is fully legally recognized."
+      },
+      {
+        q: "Do I have to list individual hourly entries or can I provide a summary?",
+        a: "While a summary total is mathematically valid, corporate accounts payable teams often delay approval for summary charges without context. Providing task-level descriptions significantly speeds up payment release."
+      }
+    ],
     relatedGuides: ["how-to-create-an-invoice", "how-to-calculate-invoice-tax", "invoice-payment-terms"],
     relatedTemplates: ["simple-invoice", "small-business-invoice"]
   },
@@ -194,6 +214,16 @@ export const guidesData = [
         paragraphs: [
           "A receipt should be provided the moment payment clears. It documents the exact date the money was received, the payment channel (e.g., 'Paid via Wire Transfer on Sept 15, 2026'), and confirms that the outstanding account balance for that specific transaction is now zero."
         ]
+      }
+    ],
+    faqs: [
+      {
+        q: "Can an invoice serve as a receipt if stamped or labeled 'PAID'?",
+        a: "Yes. Many businesses take the original invoice, mark it with a prominent 'PAID' stamp along with the date and payment method, and send it as a receipt. This is standard accounting practice."
+      },
+      {
+        q: "Which document do tax authorities require for expense deductions?",
+        a: "Most corporate tax authorities require both: the invoice establishes what was purchased and the agreed terms, while the receipt (or bank statement transaction) proves that money actually changed hands."
       }
     ],
     relatedGuides: ["how-to-create-an-invoice", "invoice-payment-terms"],
@@ -251,6 +281,16 @@ export const guidesData = [
         ]
       }
     ],
+    faqs: [
+      {
+        q: "What should I do if I accidentally skip an invoice number?",
+        a: "Create an entry in your bookkeeping ledger marking that skipped number as 'Void / Unused' with a brief memo explaining the gap. Never alter previously issued numbers to fill the gap, as this could disrupt prior tax filings."
+      },
+      {
+        q: "Is it acceptable to start my invoice numbers at 1001 instead of 1?",
+        a: "Yes. Many independent consultants and new businesses start at 1001 or 5001 to maintain professional presentation and avoid displaying that a client is their very first customer."
+      }
+    ],
     relatedGuides: ["how-to-create-an-invoice", "what-should-an-invoice-include"],
     relatedTemplates: ["simple-invoice", "small-business-invoice"]
   },
@@ -303,6 +343,16 @@ export const guidesData = [
         ]
       }
     ],
+    faqs: [
+      {
+        q: "Is sales tax applied before or after deducting a discount?",
+        a: "In standard commercial practice, tax is calculated on the discounted net subtotal. Because the client is paying less money, tax is only due on the actual gross amount collected."
+      },
+      {
+        q: "Can I collect sales tax or VAT if I am not registered with tax authorities?",
+        a: "No. You cannot legally charge or collect tax from customers unless you have an active, registered tax identification number from your government or state tax authority."
+      }
+    ],
     relatedGuides: ["how-to-create-an-invoice", "what-should-an-invoice-include"],
     relatedTemplates: ["small-business-invoice", "service-invoice"]
   },
@@ -346,6 +396,16 @@ export const guidesData = [
           "2. Offer early payment incentives where appropriate (e.g., '2/10 Net 30' offers a 2% discount if paid within 10 days).",
           "3. Include a polite late payment notice stating applicable statutory interest for accounts past due."
         ]
+      }
+    ],
+    faqs: [
+      {
+        q: "What does Net 30 mean in practical calendar days?",
+        a: "Net 30 means the client has exactly 30 calendar days from the invoice issue date to deliver payment. If an invoice is issued on October 1st, payment must be received on or before October 31st."
+      },
+      {
+        q: "Can small businesses enforce late payment interest fees?",
+        a: "Yes, provided the late fee policy was clearly stated in your original contract or agreed statement of work. Many countries also have statutory interest rates for overdue commercial debts."
       }
     ],
     relatedGuides: ["how-to-create-an-invoice", "invoice-for-freelancers"],
@@ -400,6 +460,16 @@ export const guidesData = [
         ]
       }
     ],
+    faqs: [
+      {
+        q: "Should freelancers request an upfront deposit from new clients?",
+        a: "Yes. Requesting a 30% to 50% upfront deposit before starting work protects you against non-payment and qualifies the client's seriousness. Balance payments can be tied to milestone completion."
+      },
+      {
+        q: "How should I follow up on an overdue freelance invoice?",
+        a: "Send a polite follow-up email 2 business days after the due date with the original invoice PDF attached. Reference the project milestone and provide clear bank transfer links to make settlement effortless."
+      }
+    ],
     relatedGuides: ["how-to-create-an-invoice", "invoice-payment-terms", "invoice-vs-receipt"],
     relatedTemplates: ["freelance-invoice", "simple-invoice"]
   },
@@ -435,6 +505,16 @@ export const guidesData = [
         paragraphs: [
           "Tax authorities generally require commercial entities to preserve sales invoices and billing records for 3 to 7 years depending on national jurisdiction. Maintain centralized, indexed digital archives of all issued invoices and matched bank deposits to facilitate effortless tax audits."
         ]
+      }
+    ],
+    faqs: [
+      {
+        q: "How long are small businesses legally required to retain sales invoices?",
+        a: "In the United States, the IRS recommends keeping records for at least 3 to 7 years. In the UK (HMRC) and EU countries, statutory retention periods for commercial records typically range from 6 to 10 years."
+      },
+      {
+        q: "How can small businesses prevent bad debt and unpaid invoices?",
+        a: "Implement clear written credit terms prior to order fulfillment, require purchase order documentation, run credit checks on large corporate accounts, and offer modest early payment discounts (e.g., 2% Net 10)."
       }
     ],
     relatedGuides: ["how-to-calculate-invoice-tax", "how-to-number-invoices", "what-should-an-invoice-include"],

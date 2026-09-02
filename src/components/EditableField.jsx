@@ -17,7 +17,8 @@ const EditableField = ({ cellData, onItemizedItemEdit }) => {
         min={cellData.min}
         max={cellData.max}
         name={cellData.name}
-        id={cellData.id}
+        id={`${cellData.id}-${cellData.name}`}
+        data-id={cellData.id}
         value={cellData.value}
         step={cellData.step}
         precision={cellData.precision}

@@ -146,7 +146,8 @@ const ItemRow = ({
           size="sm"
           onClick={handleDelete}
           disabled={!canDelete}
-          className="text-danger p-1 border-0 rounded-circle"
+          className="text-danger p-1 border-0 rounded-circle d-inline-flex align-items-center justify-content-center"
+          style={{ width: "38px", height: "38px" }}
           title={canDelete ? "Remove item" : "At least one item is required"}
           aria-label="Remove item"
         >

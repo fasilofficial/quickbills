@@ -12,6 +12,7 @@ import {
 import Breadcrumbs from "../components/layout/Breadcrumbs";
 import SeoMeta from "../components/common/SeoMeta";
 import AdBanner from "../components/layout/AdBanner";
+import FaqAccordion from "../components/common/FaqAccordion";
 import { guidesData } from "../data/guidesData";
 import { templatesData } from "../data/templatesData";
 
@@ -42,6 +43,8 @@ const GuideDetailPage = () => {
     "@type": "Article",
     "headline": guide.title,
     "description": guide.summary,
+    "datePublished": "2026-01-15T08:00:00+00:00",
+    "dateModified": "2026-09-01T10:00:00+00:00",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://quickbills.vercel.app/guides/${guide.slug}`
@@ -149,6 +152,14 @@ const GuideDetailPage = () => {
               </section>
             ))}
           </div>
+
+          {/* Guide Specific FAQs */}
+          {guide.faqs && guide.faqs.length > 0 && (
+            <div className="my-5 pt-4 border-top">
+              <h2 className="h4 fw-bold text-dark mb-3">Frequently Asked Questions</h2>
+              <FaqAccordion items={guide.faqs} defaultOpenIndex={0} />
+            </div>
+          )}
 
           {/* Contextual Generator Banner */}
           <div className="p-4 bg-light-subtle border rounded-3 my-5 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">

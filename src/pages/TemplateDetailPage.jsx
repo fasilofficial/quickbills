@@ -14,6 +14,7 @@ import {
 import Breadcrumbs from "../components/layout/Breadcrumbs";
 import SeoMeta from "../components/common/SeoMeta";
 import AdBanner from "../components/layout/AdBanner";
+import FaqAccordion from "../components/common/FaqAccordion";
 import { templatesData } from "../data/templatesData";
 import { guidesData } from "../data/guidesData";
 
@@ -219,6 +220,14 @@ const TemplateDetailPage = () => {
             ))}
           </div>
         </section>
+
+        {/* Template Specific FAQs */}
+        {template.faqs && template.faqs.length > 0 && (
+          <section className="mb-5">
+            <h2 className="h4 fw-bold text-dark mb-3">Frequently Asked Questions about this Format</h2>
+            <FaqAccordion items={template.faqs} defaultOpenIndex={0} />
+          </section>
+        )}
 
         {/* Related Guides */}
         {relatedGuidesList.length > 0 && (

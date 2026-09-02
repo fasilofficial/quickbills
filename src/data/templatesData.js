@@ -26,6 +26,20 @@ export const templatesData = [
       "Specify payment method details (e.g., bank transfer details or PayPal address) directly in the notes field.",
       "Issue the invoice within 24 hours of deliverable acceptance to speed up payment turnaround."
     ],
+    faqs: [
+      {
+        q: "When should I use a simple invoice instead of a complex corporate format?",
+        a: "A simple invoice is best when you are delivering straightforward, single-deliverable jobs, local trade work, or direct sales where complex multi-tier tax classifications, PO approvals, or lengthy terms are not needed. It provides immediate readability for both parties."
+      },
+      {
+        q: "Can I save or email this invoice as a PDF directly to my client?",
+        a: "Yes. After reviewing your invoice preview, click 'Download PDF' to save an unalterable, high-resolution document ready to attach to an email, or print it directly using the 'Print' button."
+      },
+      {
+        q: "Do I need a formal business entity or tax ID to issue a simple invoice?",
+        a: "In most jurisdictions, sole proprietors and independent individuals can issue invoices under their legal personal name. If you have an employer identification number (EIN) or local tax registration, you can include it in the billing address field."
+      }
+    ],
     prefillData: {
       billFrom: "Acme Creative Studio",
       billFromEmail: "billing@acmestudio.example",
@@ -82,6 +96,20 @@ export const templatesData = [
       "Always reference the client's internal project name or statement of work (SOW) number.",
       "If billing hourly, list the date range covered and break down hours by task or milestone.",
       "Clarify acceptable digital payment channels (ACH, Wise, wire transfer) to avoid checks delayed in postal transit."
+    ],
+    faqs: [
+      {
+        q: "How should freelancers handle milestone vs. hourly billing on an invoice?",
+        a: "For hourly work, specify the total hours logged in the quantity column with your hourly rate in the price column, referencing the specific date range in the description. For fixed-price milestones, set the quantity to 1 and describe the approved deliverable (e.g., 'Milestone 2: Completion of User Experience Wireframes')."
+      },
+      {
+        q: "What are the most common payment terms for independent contractors?",
+        a: "Net 14 and Net 15 are industry standards for independent freelancers. They offer clients reasonable turnaround time while protecting the contractor's personal cash flow. For larger corporations, Net 30 is common."
+      },
+      {
+        q: "Should freelancers charge sales tax or VAT on remote services?",
+        a: "Tax obligations depend on your location and the client's location. Many digital services to overseas business clients are exempt or zero-rated, while domestic clients may require local sales tax or VAT. Consult our tax guide or a tax professional for your jurisdiction."
+      }
     ],
     prefillData: {
       billFrom: "Elena Vance | Digital Design & UI/UX",
@@ -140,6 +168,20 @@ export const templatesData = [
       "Always include the customer's purchase order (PO) number to avoid corporate accounting delays.",
       "Itemize discounts and taxes transparently so the buyer can claim applicable input tax deductions."
     ],
+    faqs: [
+      {
+        q: "Why is a customer Purchase Order (PO) number essential on B2B invoices?",
+        a: "Corporate accounts payable departments match incoming invoices against approved purchase orders before issuing payment. Omitting the PO number often results in the invoice being routed to an exceptions queue, delaying disbursement by weeks."
+      },
+      {
+        q: "How does QuickBills calculate tax and discounts on small business invoices?",
+        a: "Discounts are deducted from the gross subtotal first. The statutory tax rate is then applied to the discounted taxable base, ensuring your customers are never over-taxed on discounted merchandise."
+      },
+      {
+        q: "What should a business do if a commercial invoice becomes past due?",
+        a: "Send a polite statement of account at 3 business days past due referencing the original invoice number and PO. Follow up with a phone call at 14 days. Ensure all payment methods and bank details are clearly restated in every reminder."
+      }
+    ],
     prefillData: {
       billFrom: "Apex Logistics & Supply Co.",
       billFromEmail: "invoicing@apexlogistics.example",
@@ -196,6 +238,20 @@ export const templatesData = [
       "Differentiate labor charges from equipment/parts charges for complete transparency.",
       "Mention any warranty period or guarantee terms in the notes section.",
       "Send the invoice immediately following completion of the service visit or billing period."
+    ],
+    faqs: [
+      {
+        q: "How should service providers separate labor from materials on an invoice?",
+        a: "List labor as individual line items with hours or service packages, and itemize replacement parts or materials on separate rows. This transparency prevents disputes and makes it easy for clients to audit job expenses."
+      },
+      {
+        q: "Should service invoices include warranty terms?",
+        a: "Yes. Including a brief sentence in the notes section (e.g., 'All installation work is backed by a 90-day parts and labor warranty') provides peace of mind, reduces customer anxiety, and reinforces professional standards."
+      },
+      {
+        q: "How quickly after service completion should the invoice be sent?",
+        a: "Best practice is to issue the invoice on the same day the service is signed off, or within 48 hours. Clients are most willing to settle balances when the value of the completed work is freshest in their minds."
+      }
     ],
     prefillData: {
       billFrom: "Cascade Systems & IT Solutions",

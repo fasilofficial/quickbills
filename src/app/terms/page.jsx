@@ -1,20 +1,21 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Breadcrumbs from "../components/layout/Breadcrumbs";
-import SeoMeta from "../components/common/SeoMeta";
+import Breadcrumbs from "../../components/layout/Breadcrumbs";
 
-const TermsPage = () => {
+export const metadata = {
+  title: "Terms of Use - QuickBills",
+  description:
+    "Review the QuickBills Terms of Use. Understand user responsibilities regarding invoice accuracy, tax compliance, and terms governing service availability.",
+  alternates: {
+    canonical: "/terms",
+  },
+};
+
+export default function TermsPage() {
   const breadcrumbs = [{ label: "Terms of Use", path: "/terms" }];
 
   return (
     <div className="qb-terms-page py-4">
-      <SeoMeta
-        title="Terms of Use - QuickBills"
-        description="Review the QuickBills Terms of Use. Understand user responsibilities regarding invoice accuracy, tax compliance, and terms governing service availability."
-        canonicalPath="/terms"
-        keywords="quickbills terms of use, terms of service, invoice disclaimer"
-      />
-
       <Container>
         <Breadcrumbs items={breadcrumbs} />
 
@@ -39,7 +40,7 @@ const TermsPage = () => {
           </section>
 
           <section className="mb-4">
-            <h2 className="h5 fw-bold text-dark mb-2">3. User Responsibility & Information Accuracy</h2>
+            <h2 className="h5 fw-bold text-dark mb-2">3. User Responsibility &amp; Information Accuracy</h2>
             <p className="text-secondary small lh-base">
               You are solely responsible for all information entered into the invoice generator, including the truthfulness of party names, billing descriptions, pricing rates, currency selections, and tax calculations. QuickBills does not verify the identity of parties or validate the legitimacy of commercial claims made in your generated documents.
             </p>
@@ -53,36 +54,20 @@ const TermsPage = () => {
           </section>
 
           <section className="mb-4">
-            <h2 className="h5 fw-bold text-dark mb-2">5. Data Retention & Backups</h2>
+            <h2 className="h5 fw-bold text-dark mb-2">5. Data Retention &amp; Backups</h2>
             <p className="text-secondary small lh-base">
               Because QuickBills functions client-side in your browser, we do not maintain a permanent database of your generated invoices. You are solely responsible for downloading and archiving copies of your generated PDFs for your personal records, bookkeeping archives, and tax audit compliance.
             </p>
           </section>
 
-          <section className="mb-4">
-            <h2 className="h5 fw-bold text-dark mb-2">6. Service Availability & Modifications</h2>
-            <p className="text-secondary small lh-base">
-              We strive to keep QuickBills accessible and reliable 24/7. However, the service is provided on an "as is" and "as available" basis without warranties of any kind. We reserve the right to update, modify, or temporarily suspend features or content at any time without prior notice.
-            </p>
-          </section>
-
-          <section className="mb-4">
-            <h2 className="h5 fw-bold text-dark mb-2">7. Limitation of Liability</h2>
-            <p className="text-secondary small lh-base">
-              To the fullest extent permitted by applicable law, QuickBills and its operators shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use or inability to use the service, including but not limited to business disruption, delayed client payments, or calculation disputes.
-            </p>
-          </section>
-
           <section className="mb-0">
-            <h2 className="h5 fw-bold text-dark mb-2">8. Questions & Contact</h2>
+            <h2 className="h5 fw-bold text-dark mb-2">6. Limitation of Liability</h2>
             <p className="text-secondary small lh-base m-0">
-              For questions regarding these Terms of Use, please reach out through our <a href="/contact">Contact Page</a>.
+              QuickBills is provided &quot;as is&quot; without warranties of any kind, either express or implied. Under no circumstances shall QuickBills or its operators be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the service.
             </p>
           </section>
         </div>
       </Container>
     </div>
   );
-};
-
-export default TermsPage;
+}

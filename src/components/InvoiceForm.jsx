@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -13,16 +15,13 @@ const InvoiceForm = ({ initialData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currency, setCurrency] = useState(initialData?.currency || "$");
   const [currentDate, setCurrentDate] = useState(
-    new Date().toISOString().split("T")[0]
+    initialData?.currentDate || "2026-09-12"
   );
   const [invoiceNumber, setInvoiceNumber] = useState(
     initialData?.invoiceNumber || 1
   );
   const [dateOfIssue, setDateOfIssue] = useState(
-    initialData?.dateOfIssue ||
-      new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
-        .toISOString()
-        .split("T")[0]
+    initialData?.dateOfIssue || "2026-09-26"
   );
   const [billTo, setBillTo] = useState(initialData?.billTo || "");
   const [billToEmail, setBillToEmail] = useState(initialData?.billToEmail || "");
@@ -54,7 +53,7 @@ const InvoiceForm = ({ initialData }) => {
       ? initialData.items
       : [
           {
-            id: (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
+            id: "item-init-1",
             name: "",
             description: "",
             price: "1.00",
@@ -62,6 +61,20 @@ const InvoiceForm = ({ initialData }) => {
           },
         ]
   );
+
+  // Initialize client-side current date on mount if no initialData was given
+  useEffect(() => {
+    if (!initialData) {
+      try {
+        const now = new Date();
+        setCurrentDate(now.toISOString().split("T")[0]);
+        const due = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
+        setDateOfIssue(due.toISOString().split("T")[0]);
+      } catch (e) {
+        // Fallback to defaults
+      }
+    }
+  }, [initialData]);
 
   // Sync when initialData changes (e.g. user selects a template)
   useEffect(() => {

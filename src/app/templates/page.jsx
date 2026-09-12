@@ -1,27 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { BiFile, BiRightArrowAlt, BiCheck } from "react-icons/bi";
-import Breadcrumbs from "../components/layout/Breadcrumbs";
-import SeoMeta from "../components/common/SeoMeta";
-import AdBanner from "../components/layout/AdBanner";
-import { templatesData } from "../data/templatesData";
+import Breadcrumbs from "../../components/layout/Breadcrumbs";
+import { templatesData } from "../../data/templatesData";
 
-const TemplatesPage = () => {
+export const metadata = {
+  title: "Free Professional Invoice Templates - QuickBills",
+  description:
+    "Explore free, customizable invoice templates for freelancers, contractors, small businesses, and service providers. Pre-configured with recommended fields and sample line items.",
+  alternates: {
+    canonical: "/templates",
+  },
+};
+
+export default function TemplatesPage() {
   const breadcrumbs = [{ label: "Templates", path: "/templates" }];
 
   return (
     <div className="qb-templates-page py-4">
-      <SeoMeta
-        title="Free Professional Invoice Templates - QuickBills"
-        description="Explore free, customizable invoice templates for freelancers, contractors, small businesses, and service providers. Pre-configured with recommended fields and sample line items."
-        canonicalPath="/templates"
-        keywords="invoice templates, freelance invoice template, small business invoice template, simple invoice template, service invoice"
-      />
-
       <Container>
         <Breadcrumbs items={breadcrumbs} />
 
@@ -75,15 +75,14 @@ const TemplatesPage = () => {
 
                 <div className="d-flex flex-column flex-sm-row gap-2 mt-auto pt-3 border-top">
                   <Link
-                    to={`/templates/${template.slug}`}
+                    href={`/templates/${template.slug}`}
                     className="btn btn-outline-primary fw-medium small flex-fill text-center d-flex align-items-center justify-content-center gap-1"
                   >
                     <span>Read Template Guide</span>
                     <BiRightArrowAlt size={16} />
                   </Link>
                   <Link
-                    to={`/invoice?template=${template.slug}`}
-                    state={{ templateData: template.prefillData }}
+                    href={`/invoice?template=${template.slug}`}
                     className="btn btn-primary fw-medium small flex-fill text-center text-white"
                   >
                     Use This Template
@@ -95,36 +94,33 @@ const TemplatesPage = () => {
         </Row>
 
         {/* Informative Guidance Section */}
-        <div className="bg-white border rounded-3 p-4 p-md-5 my-5">
+        <div className="bg-white border rounded-3 p-4 p-md-5 my-5 shadow-sm">
           <Row className="gy-4 align-items-center">
             <Col lg={7}>
-              <h2 className="h4 fw-bold text-dark mb-3">How to Choose the Right Template</h2>
-              <p className="text-secondary small lh-base mb-3">
-                Different business models require different billing documentation. A freelance developer billing hourly needs clear date-range logs and milestone sign-offs, while a B2B product supplier must include sales tax codes, item quantities, and formal purchase order cross-references.
+              <h2 className="h4 fw-bold text-dark mb-3">
+                How to Choose the Right Template for Your Business
+              </h2>
+              <p className="text-secondary lh-base mb-3">
+                Selecting the appropriate invoice layout prevents payment disputes and administrative bottlenecks. For single-deliverable tasks or local trade services, our <strong>Simple Invoice Template</strong> delivers concise itemization without unnecessary overhead.
               </p>
-              <p className="text-secondary small lh-base mb-0">
-                All QuickBills templates are fully customizable. You can adjust the currency, add or delete line items, update tax rates, and adapt the payment notes to match your specific client contracts.
+              <p className="text-secondary lh-base mb-0">
+                If you are a contractor billing hourly milestones or a small business managing purchase orders and sales tax, choose the <strong>Freelance</strong> or <strong>Small Business</strong> template. Each format can be customized directly in the generator.
               </p>
             </Col>
             <Col lg={5}>
-              <div className="p-3 bg-light border rounded-3">
-                <h3 className="h6 fw-bold text-dark mb-2">Need Guidance on Invoicing?</h3>
+              <div className="p-4 bg-light border rounded-3">
+                <h3 className="h6 fw-bold text-dark mb-2">Need Invoicing Guidance?</h3>
                 <p className="text-muted small mb-3">
-                  Check out our practical step-by-step guides for pricing, numbering schemes, and legal requirements.
+                  Learn about numbering systems, payment terms, and how to itemize deliverables properly.
                 </p>
-                <Link to="/guides" className="btn btn-sm btn-outline-secondary fw-semibold">
-                  Browse All Invoicing Guides &rarr;
+                <Link href="/guides" className="btn btn-outline-secondary btn-sm fw-semibold">
+                  Browse All Guides &rarr;
                 </Link>
               </div>
             </Col>
           </Row>
         </div>
-
-        {/* Content Ad Placement */}
-        <AdBanner slot="9876543210" />
       </Container>
     </div>
   );
-};
-
-export default TemplatesPage;
+}

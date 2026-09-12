@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { BiChevronRight, BiHomeAlt } from "react-icons/bi";
 
 const Breadcrumbs = ({ items = [] }) => {
@@ -19,7 +19,7 @@ const Breadcrumbs = ({ items = [] }) => {
           itemType="https://schema.org/ListItem"
         >
           <Link
-            to="/"
+            href="/"
             className="text-decoration-none text-muted d-flex align-items-center"
             itemProp="item"
           >
@@ -53,7 +53,7 @@ const Breadcrumbs = ({ items = [] }) => {
                 </span>
               ) : (
                 <Link
-                  to={item.path}
+                  href={item.path}
                   className="text-decoration-none text-muted"
                   itemProp="item"
                 >

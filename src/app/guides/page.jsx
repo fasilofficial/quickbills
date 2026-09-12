@@ -1,27 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { BiTimeFive, BiRightArrowAlt } from "react-icons/bi";
-import Breadcrumbs from "../components/layout/Breadcrumbs";
-import SeoMeta from "../components/common/SeoMeta";
-import AdBanner from "../components/layout/AdBanner";
-import { guidesData } from "../data/guidesData";
+import Breadcrumbs from "../../components/layout/Breadcrumbs";
+import { guidesData } from "../../data/guidesData";
 
-const GuidesPage = () => {
+export const metadata = {
+  title: "Invoicing Guides & Educational Resources - QuickBills",
+  description:
+    "Comprehensive, practical invoicing guides for small business owners, freelancers, and contractors. Learn numbering systems, payment terms, tax calculations, and how to get paid on time.",
+  alternates: {
+    canonical: "/guides",
+  },
+};
+
+export default function GuidesPage() {
   const breadcrumbs = [{ label: "Guides", path: "/guides" }];
 
   return (
     <div className="qb-guides-page py-4">
-      <SeoMeta
-        title="Invoicing Guides & Educational Resources - QuickBills"
-        description="Comprehensive, practical invoicing guides for small business owners, freelancers, and contractors. Learn numbering systems, payment terms, tax calculations, and how to get paid on time."
-        canonicalPath="/guides"
-        keywords="invoicing guide, how to invoice, invoice numbering, tax calculation, small business billing, freelance invoice advice"
-      />
-
       <Container>
         <Breadcrumbs items={breadcrumbs} />
 
@@ -31,7 +31,7 @@ const GuidesPage = () => {
             Invoicing Education
           </span>
           <h1 className="display-6 fw-bold text-dark mb-3">
-            Invoicing Guides & Practical Resources
+            Invoicing Guides &amp; Practical Resources
           </h1>
           <p className="lead text-muted fs-6">
             Master the fundamentals of billing, accounting terminology, tax itemization, and cash flow management with our practical, human-written guides.
@@ -55,7 +55,7 @@ const GuidesPage = () => {
 
                 <h2 className="h5 fw-bold text-dark mb-3 lh-snug">
                   <Link
-                    to={`/guides/${guide.slug}`}
+                    href={`/guides/${guide.slug}`}
                     className="text-dark text-decoration-none hover-primary"
                   >
                     {guide.title}
@@ -69,7 +69,7 @@ const GuidesPage = () => {
                 <div className="pt-3 border-top mt-auto d-flex justify-content-between align-items-center">
                   <span className="text-muted small">{guide.updatedDate}</span>
                   <Link
-                    to={`/guides/${guide.slug}`}
+                    href={`/guides/${guide.slug}`}
                     className="fw-semibold small text-primary d-inline-flex align-items-center gap-1"
                   >
                     <span>Read Guide</span>
@@ -87,16 +87,11 @@ const GuidesPage = () => {
           <p className="text-muted small mb-4">
             QuickBills makes it simple to generate professional, calculation-verified invoices adhering to all standard commercial guidelines.
           </p>
-          <Link to="/invoice" className="btn btn-primary fw-semibold px-4 py-2">
+          <Link href="/invoice" className="btn btn-primary fw-semibold px-4 py-2">
             Create an Invoice Now &rarr;
           </Link>
         </div>
-
-        {/* Compliant Ad Slot on Content Page */}
-        <AdBanner slot="7654321098" />
       </Container>
     </div>
   );
-};
-
-export default GuidesPage;
+}

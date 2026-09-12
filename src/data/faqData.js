@@ -16,7 +16,7 @@ export const faqData = [
       },
       {
         q: "Why should invoices have unique numbers?",
-        a: "Unique invoice numbers are essential for preventing confusion, avoiding duplicate payments, and maintaining an orderly audit trail. Tax authorities and business auditors require sequential, non-repeating invoice numbers so every commercial transaction can be accurately tracked."
+        a: "Unique invoice numbers are essential for preventing confusion, avoiding duplicate payments, and maintaining an orderly audit trail. Accounting best practices and tax guidelines in most jurisdictions recommend sequential, non-repeating invoice numbers so every commercial transaction can be accurately verified."
       },
       {
         q: "What is an invoice due date?",

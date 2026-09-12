@@ -1,12 +1,15 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import Container from "react-bootstrap/Container";
 import { BiFile, BiMenu, BiX } from "react-icons/bi";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const closeMenu = () => setMobileMenuOpen(false);
 
@@ -25,20 +28,20 @@ const Header = () => {
 
   const handleCreateInvoiceClick = (e) => {
     closeMenu();
-    if (location.pathname === "/") {
+    if (pathname === "/") {
       e.preventDefault();
       const el = document.getElementById("invoice-generator-section");
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      navigate("/invoice");
+      router.push("/invoice");
     }
   };
 
   const isCurrent = (path) => {
-    if (path === "/" && location.pathname === "/") return true;
-    if (path !== "/" && location.pathname.startsWith(path)) return true;
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname?.startsWith(path)) return true;
     return false;
   };
 
@@ -48,7 +51,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-between py-3">
           {/* Logo */}
           <Link
-            to="/"
+            href="/"
             onClick={closeMenu}
             className="text-decoration-none d-flex align-items-center gap-2 text-dark"
           >
@@ -67,46 +70,46 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="d-none d-md-flex align-items-center gap-4" aria-label="Main Navigation">
-            <NavLink
-              to="/invoice"
-              className={({ isActive }) =>
-                `text-decoration-none fw-medium transition-colors ${
-                  isActive ? "text-primary fw-semibold" : "text-secondary hover-primary"
-                }`
-              }
+            <Link
+              href="/invoice"
+              className={`text-decoration-none fw-medium transition-colors ${
+                isCurrent("/invoice") ? "text-primary fw-semibold" : "text-secondary hover-primary"
+              }`}
             >
               Invoice Generator
-            </NavLink>
-            <NavLink
-              to="/templates"
-              className={({ isActive }) =>
-                `text-decoration-none fw-medium transition-colors ${
-                  isActive ? "text-primary fw-semibold" : "text-secondary hover-primary"
-                }`
-              }
+            </Link>
+            <Link
+              href="/templates"
+              className={`text-decoration-none fw-medium transition-colors ${
+                isCurrent("/templates") ? "text-primary fw-semibold" : "text-secondary hover-primary"
+              }`}
             >
               Templates
-            </NavLink>
-            <NavLink
-              to="/guides"
-              className={({ isActive }) =>
-                `text-decoration-none fw-medium transition-colors ${
-                  isActive ? "text-primary fw-semibold" : "text-secondary hover-primary"
-                }`
-              }
+            </Link>
+            <Link
+              href="/guides"
+              className={`text-decoration-none fw-medium transition-colors ${
+                isCurrent("/guides") ? "text-primary fw-semibold" : "text-secondary hover-primary"
+              }`}
             >
               Guides
-            </NavLink>
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                `text-decoration-none fw-medium transition-colors ${
-                  isActive ? "text-primary fw-semibold" : "text-secondary hover-primary"
-                }`
-              }
+            </Link>
+            <Link
+              href="/faq"
+              className={`text-decoration-none fw-medium transition-colors ${
+                isCurrent("/faq") ? "text-primary fw-semibold" : "text-secondary hover-primary"
+              }`}
             >
               FAQ
-            </NavLink>
+            </Link>
+            <Link
+              href="/about"
+              className={`text-decoration-none fw-medium transition-colors ${
+                isCurrent("/about") ? "text-primary fw-semibold" : "text-secondary hover-primary"
+              }`}
+            >
+              About
+            </Link>
           </nav>
 
           {/* Right CTA */}
@@ -140,7 +143,7 @@ const Header = () => {
           <div id="mobile-nav-drawer" className="d-md-none border-top py-3 animate-fade-in">
             <nav className="d-flex flex-column gap-2 mb-3" aria-label="Mobile Navigation">
               <Link
-                to="/invoice"
+                href="/invoice"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/invoice") ? "bg-light text-primary fw-semibold" : "text-dark"
@@ -149,7 +152,7 @@ const Header = () => {
                 Invoice Generator
               </Link>
               <Link
-                to="/templates"
+                href="/templates"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/templates") ? "bg-light text-primary fw-semibold" : "text-dark"
@@ -158,7 +161,7 @@ const Header = () => {
                 Templates
               </Link>
               <Link
-                to="/guides"
+                href="/guides"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/guides") ? "bg-light text-primary fw-semibold" : "text-dark"
@@ -167,7 +170,7 @@ const Header = () => {
                 Guides
               </Link>
               <Link
-                to="/faq"
+                href="/faq"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/faq") ? "bg-light text-primary fw-semibold" : "text-dark"
@@ -176,7 +179,7 @@ const Header = () => {
                 FAQ
               </Link>
               <Link
-                to="/about"
+                href="/about"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/about") ? "bg-light text-primary fw-semibold" : "text-dark"
@@ -185,7 +188,7 @@ const Header = () => {
                 About QuickBills
               </Link>
               <Link
-                to="/contact"
+                href="/contact"
                 onClick={closeMenu}
                 className={`px-3 py-2 rounded-2 text-decoration-none fw-medium ${
                   isCurrent("/contact") ? "bg-light text-primary fw-semibold" : "text-dark"

@@ -3,7 +3,7 @@ export const guidesData = [
     slug: "how-to-create-an-invoice",
     title: "How to Create an Invoice: A Step-by-Step Guide for Small Businesses & Freelancers",
     summary:
-      "Learn how to create professional, legally sound invoices that ensure prompt payment. Step-by-step instructions from gathering details to sending and tracking.",
+      "Learn how to create clear, professional invoices that ensure prompt payment. Step-by-step instructions from gathering details to sending and tracking.",
     readTime: "6 min read",
     category: "Invoicing Basics",
     updatedDate: "Updated September 2026",
@@ -11,8 +11,8 @@ export const guidesData = [
       {
         heading: "Introduction: Why Proper Invoicing Matters",
         paragraphs: [
-          "An invoice is more than a simple request for payment—it is a legal record of transaction, an accounting document, and a direct reflection of your business's professionalism. When an invoice is clear, accurate, and itemized, clients process payments faster and with fewer disputes.",
-          "According to business banking studies, over 40% of late payments stem from administrative errors, missing purchase order numbers, or vague line item descriptions. Following a structured invoicing process eliminates these friction points."
+          "An invoice is more than a simple request for payment—it is a formal record of transaction, an essential accounting document, and a direct reflection of your business's professionalism. When an invoice is clear, accurate, and itemized, clients process payments faster and with fewer disputes.",
+          "Administrative oversights, missing purchase order numbers, and vague line item descriptions are among the most common sources of preventable payment delays. Following a structured invoicing process eliminates these friction points."
         ]
       },
       {
@@ -92,7 +92,7 @@ export const guidesData = [
     slug: "what-should-an-invoice-include",
     title: "What Should an Invoice Include? 10 Essential Elements",
     summary:
-      "A complete checklist of mandatory and recommended fields every invoice must feature to be legally compliant and easily processed by accounts payable.",
+      "A complete checklist of standard and recommended fields every invoice should feature to be complete, accurate, and easily processed by accounts payable.",
     readTime: "5 min read",
     category: "Invoicing Standards",
     updatedDate: "Updated September 2026",
@@ -158,7 +158,7 @@ export const guidesData = [
     faqs: [
       {
         q: "Is a physical handwritten signature required on a digital invoice?",
-        a: "In the vast majority of commercial jurisdictions, a physical signature is not required on standard commercial invoices. Clear electronic transmission with complete seller and buyer credentials is fully legally recognized."
+        a: "In most commercial transactions, a physical signature is not necessary on standard commercial invoices unless specifically required by your contract or local regulatory standards. Clear electronic delivery with complete seller and buyer credentials is standard business practice."
       },
       {
         q: "Do I have to list individual hourly entries or can I provide a summary?",
@@ -306,13 +306,8 @@ export const guidesData = [
       {
         heading: "Understanding Tax Obligations on Commercial Invoices",
         paragraphs: [
-          "In many jurisdictions, businesses registered for indirect taxes (such as US State Sales Tax, European VAT, or Canadian/Australian GST) are legally obligated to itemize taxes on sales invoices. Charging and reporting tax accurately avoids compliance penalties and guarantees your customers can claim input tax credits where applicable."
-        ]
-      },
-      {
-        heading: "Tax-Exclusive vs. Tax-Inclusive Invoicing",
-        paragraphs: [
-          "B2B invoices are almost universally calculated on a tax-exclusive basis, meaning tax is computed on top of the subtotal. Consumer retail transactions are often presented tax-inclusive.",
+          "Depending on the applicable tax rules in your jurisdiction, businesses registered for indirect taxes (such as US State Sales Tax, European VAT, or Canadian/Australian GST) may be required to itemize taxes on sales invoices. Charging and reporting tax accurately ensures transparency and allows eligible business customers to process tax deductions or input credits where permitted.",
+          "B2B invoices are commonly calculated on a tax-exclusive basis, meaning tax is computed on top of the subtotal. In contrast, consumer retail transactions are often presented tax-inclusive.",
           "QuickBills utilizes the standard tax-exclusive model used by corporate accounting software worldwide."
         ]
       },
@@ -350,7 +345,7 @@ export const guidesData = [
       },
       {
         q: "Can I collect sales tax or VAT if I am not registered with tax authorities?",
-        a: "No. You cannot legally charge or collect tax from customers unless you have an active, registered tax identification number from your government or state tax authority."
+        a: "In most jurisdictions, you should only charge or collect sales tax, VAT, or GST if you are formally registered with the appropriate tax authority. Charging tax without authorization can lead to penalties. Check with your local tax agency or accountant for registration thresholds and guidelines."
       }
     ],
     relatedGuides: ["how-to-create-an-invoice", "what-should-an-invoice-include"],
@@ -503,14 +498,14 @@ export const guidesData = [
       {
         heading: "Essential Recordkeeping & Audit Trails",
         paragraphs: [
-          "Tax authorities generally require commercial entities to preserve sales invoices and billing records for 3 to 7 years depending on national jurisdiction. Maintain centralized, indexed digital archives of all issued invoices and matched bank deposits to facilitate effortless tax audits."
+          "Commercial recordkeeping guidelines in many countries recommend preserving sales invoices and billing documentation for 3 to 7 years. Maintaining organized digital archives of issued invoices and payment confirmations supports accurate bookkeeping and smooth tax preparation."
         ]
       }
     ],
     faqs: [
       {
-        q: "How long are small businesses legally required to retain sales invoices?",
-        a: "In the United States, the IRS recommends keeping records for at least 3 to 7 years. In the UK (HMRC) and EU countries, statutory retention periods for commercial records typically range from 6 to 10 years."
+        q: "How long should small businesses retain sales invoices?",
+        a: "In the United States, the IRS recommends keeping records for at least 3 to 7 years. In the UK (HMRC) and EU countries, retention periods for commercial records typically range from 6 to 10 years. Always check with your accountant or regional revenue agency for specific requirements."
       },
       {
         q: "How can small businesses prevent bad debt and unpaid invoices?",

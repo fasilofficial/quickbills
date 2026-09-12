@@ -1,5 +1,6 @@
 import React from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,20 +9,52 @@ import {
   BiTimeFive,
   BiCalendar,
   BiRightArrowAlt,
+  BiUser,
+  BiShieldQuarter,
 } from "react-icons/bi";
-import Breadcrumbs from "../components/layout/Breadcrumbs";
-import SeoMeta from "../components/common/SeoMeta";
-import AdBanner from "../components/layout/AdBanner";
-import FaqAccordion from "../components/common/FaqAccordion";
-import { guidesData } from "../data/guidesData";
-import { templatesData } from "../data/templatesData";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs";
+import FaqAccordion from "../../../components/common/FaqAccordion";
+import { guidesData } from "../../../data/guidesData";
+import { templatesData } from "../../../data/templatesData";
 
-const GuideDetailPage = () => {
-  const { slug } = useParams();
-  const guide = guidesData.find((g) => g.slug === slug);
+export async function generateStaticParams() {
+  return guidesData.map((guide) => ({
+    slug: guide.slug,
+  }));
+}
+
+export async function generateMetadata({ params }) {
+  const guide = guidesData.find((g) => g.slug === params.slug);
 
   if (!guide) {
-    return <Navigate to="/guides" replace />;
+    return {
+      title: "Guide Not Found",
+    };
+  }
+
+  return {
+    title: guide.title,
+    description: guide.summary,
+    alternates: {
+      canonical: `/guides/${guide.slug}`,
+    },
+    openGraph: {
+      title: guide.title,
+      description: guide.summary,
+      url: `https://quickbills.vercel.app/guides/${guide.slug}`,
+      type: "article",
+      publishedTime: "2026-01-15T08:00:00+00:00",
+      modifiedTime: "2026-09-01T10:00:00+00:00",
+      authors: ["QuickBills Editorial Team"],
+    },
+  };
+}
+
+export default function GuideDetailPage({ params }) {
+  const guide = guidesData.find((g) => g.slug === params.slug);
+
+  if (!guide) {
+    notFound();
   }
 
   const breadcrumbs = [
@@ -29,7 +62,6 @@ const GuideDetailPage = () => {
     { label: guide.title, path: `/guides/${guide.slug}` },
   ];
 
-  // Resolve related guides and templates
   const relatedGuidesList = guidesData.filter((g) =>
     guide.relatedGuides?.includes(g.slug)
   );
@@ -37,7 +69,6 @@ const GuideDetailPage = () => {
     guide.relatedTemplates?.includes(t.slug)
   );
 
-  // Article JSON-LD Structured Data
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -45,25 +76,31 @@ const GuideDetailPage = () => {
     "description": guide.summary,
     "datePublished": "2026-01-15T08:00:00+00:00",
     "dateModified": "2026-09-01T10:00:00+00:00",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://quickbills.vercel.app/guides/${guide.slug}`
+    "author": {
+      "@type": "Organization",
+      "name": "QuickBills Editorial Team",
+      "url": "https://quickbills.vercel.app/about",
     },
     "publisher": {
       "@type": "Organization",
       "name": "QuickBills",
-      "url": "https://quickbills.vercel.app/"
-    }
+      "url": "https://quickbills.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quickbills.vercel.app/og-image.svg",
+      },
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://quickbills.vercel.app/guides/${guide.slug}`,
+    },
   };
 
   return (
     <div className="qb-guide-detail-page py-4">
-      <SeoMeta
-        title={guide.title}
-        description={guide.summary}
-        canonicalPath={`/guides/${guide.slug}`}
-        keywords={`${guide.category}, invoicing guide, invoice best practices, QuickBills`}
-        schema={articleSchema}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
       <Container>
@@ -83,6 +120,10 @@ const GuideDetailPage = () => {
               <span className="d-flex align-items-center gap-1">
                 <BiCalendar size={15} />
                 <span>{guide.updatedDate}</span>
+              </span>
+              <span className="d-flex align-items-center gap-1">
+                <BiUser size={15} />
+                <span>QuickBills Editorial Team</span>
               </span>
             </div>
 
@@ -153,6 +194,17 @@ const GuideDetailPage = () => {
             ))}
           </div>
 
+          {/* Editorial Disclaimer Box */}
+          <div className="p-4 bg-light border rounded-3 my-5">
+            <div className="d-flex align-items-center gap-2 text-primary fw-semibold mb-2">
+              <BiShieldQuarter size={20} />
+              <span>Legal &amp; Tax Disclaimer</span>
+            </div>
+            <p className="text-muted small lh-base m-0">
+              QuickBills publishes business articles and software utilities for general educational purposes. We do not provide licensed legal, certified public accounting, or professional tax consulting services. Invoicing standards, sales tax, VAT, and GST obligations vary substantially by jurisdiction, transaction category, and legal business entity. Always verify your specific requirements with a licensed accountant, attorney, or regional tax revenue agency.
+            </p>
+          </div>
+
           {/* Guide Specific FAQs */}
           {guide.faqs && guide.faqs.length > 0 && (
             <div className="my-5 pt-4 border-top">
@@ -165,14 +217,14 @@ const GuideDetailPage = () => {
           <div className="p-4 bg-light-subtle border rounded-3 my-5 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <div>
               <h3 className="h6 fw-bold text-dark mb-1">
-                Create a Compliant Invoice with QuickBills
+                Create a Verified Invoice with QuickBills
               </h3>
               <p className="text-muted small m-0">
-                Apply these guidelines immediately in our free browser-based generator.
+                Apply these principles immediately in our free browser-based generator.
               </p>
             </div>
             <Link
-              to="/invoice"
+              href="/invoice"
               className="btn btn-primary fw-semibold px-4 py-2 text-white flex-shrink-0"
             >
               Generate Invoice &rarr;
@@ -191,7 +243,7 @@ const GuideDetailPage = () => {
                       <h4 className="h6 fw-bold text-dark mb-1">{tpl.title}</h4>
                       <p className="text-muted small mb-2">{tpl.shortDescription}</p>
                       <Link
-                        to={`/templates/${tpl.slug}`}
+                        href={`/templates/${tpl.slug}`}
                         className="small fw-semibold text-primary d-inline-flex align-items-center gap-1"
                       >
                         <span>View Template</span>
@@ -207,20 +259,20 @@ const GuideDetailPage = () => {
           {/* Related Guides */}
           {relatedGuidesList.length > 0 && (
             <div className="pt-4 border-top">
-              <h3 className="h5 fw-bold text-dark mb-3">Related Guides</h3>
+              <h3 className="h5 fw-bold text-dark mb-3">Related Invoicing Guides</h3>
               <Row className="g-3">
                 {relatedGuidesList.map((rg) => (
                   <Col md={6} key={rg.slug}>
                     <div className="p-3 border rounded-3 bg-white h-100">
                       <span className="badge bg-light text-primary border small mb-1">{rg.category}</span>
                       <h4 className="h6 fw-bold text-dark mb-1">
-                        <Link to={`/guides/${rg.slug}`} className="text-dark text-decoration-none hover-primary">
+                        <Link href={`/guides/${rg.slug}`} className="text-dark text-decoration-none hover-primary">
                           {rg.title}
                         </Link>
                       </h4>
                       <p className="text-muted small mb-2">{rg.summary.slice(0, 110)}...</p>
                       <Link
-                        to={`/guides/${rg.slug}`}
+                        href={`/guides/${rg.slug}`}
                         className="small fw-semibold text-primary d-inline-flex align-items-center gap-1"
                       >
                         <span>Read article</span>
@@ -233,12 +285,7 @@ const GuideDetailPage = () => {
             </div>
           )}
         </article>
-
-        {/* Content Ad Placement */}
-        <AdBanner slot="6543210987" />
       </Container>
     </div>
   );
-};
-
-export default GuideDetailPage;
+}

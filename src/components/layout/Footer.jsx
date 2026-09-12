@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,7 +12,7 @@ const Footer = () => {
         <Row className="gy-4">
           {/* Brand & Description */}
           <Col lg={4} md={12}>
-            <Link to="/" className="text-decoration-none d-flex align-items-center gap-2 text-dark mb-3">
+            <Link href="/" className="text-decoration-none d-flex align-items-center gap-2 text-dark mb-3">
               <div className="qb-logo-icon d-flex align-items-center justify-content-center bg-primary text-white rounded-3 p-2">
                 <BiFile size={22} />
               </div>
@@ -39,32 +39,32 @@ const Footer = () => {
             <h6 className="fw-bold text-dark mb-3 fs-6">Product</h6>
             <ul className="list-unstyled d-flex flex-column gap-2 small">
               <li>
-                <Link to="/invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/invoice" className="text-decoration-none text-muted hover-primary">
                   Invoice Generator
                 </Link>
               </li>
               <li>
-                <Link to="/templates" className="text-decoration-none text-muted hover-primary">
+                <Link href="/templates" className="text-decoration-none text-muted hover-primary">
                   Invoice Templates
                 </Link>
               </li>
               <li>
-                <Link to="/templates/simple-invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/templates/simple-invoice" className="text-decoration-none text-muted hover-primary">
                   Simple Invoice
                 </Link>
               </li>
               <li>
-                <Link to="/templates/freelance-invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/templates/freelance-invoice" className="text-decoration-none text-muted hover-primary">
                   Freelance Invoice
                 </Link>
               </li>
               <li>
-                <Link to="/templates/small-business-invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/templates/small-business-invoice" className="text-decoration-none text-muted hover-primary">
                   Small Business Invoice
                 </Link>
               </li>
               <li>
-                <Link to="/templates/service-invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/templates/service-invoice" className="text-decoration-none text-muted hover-primary">
                   Service Invoice
                 </Link>
               </li>
@@ -76,32 +76,32 @@ const Footer = () => {
             <h6 className="fw-bold text-dark mb-3 fs-6">Resources</h6>
             <ul className="list-unstyled d-flex flex-column gap-2 small">
               <li>
-                <Link to="/guides" className="text-decoration-none text-muted hover-primary">
+                <Link href="/guides" className="text-decoration-none text-muted hover-primary">
                   All Invoice Guides
                 </Link>
               </li>
               <li>
-                <Link to="/guides/how-to-create-an-invoice" className="text-decoration-none text-muted hover-primary">
+                <Link href="/guides/how-to-create-an-invoice" className="text-decoration-none text-muted hover-primary">
                   How to Create an Invoice
                 </Link>
               </li>
               <li>
-                <Link to="/guides/what-should-an-invoice-include" className="text-decoration-none text-muted hover-primary">
+                <Link href="/guides/what-should-an-invoice-include" className="text-decoration-none text-muted hover-primary">
                   What Invoices Must Include
                 </Link>
               </li>
               <li>
-                <Link to="/guides/invoice-vs-receipt" className="text-decoration-none text-muted hover-primary">
+                <Link href="/guides/invoice-vs-receipt" className="text-decoration-none text-muted hover-primary">
                   Invoice vs Receipt
                 </Link>
               </li>
               <li>
-                <Link to="/guides/how-to-number-invoices" className="text-decoration-none text-muted hover-primary">
+                <Link href="/guides/how-to-number-invoices" className="text-decoration-none text-muted hover-primary">
                   Invoice Numbering Systems
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-decoration-none text-muted hover-primary">
+                <Link href="/faq" className="text-decoration-none text-muted hover-primary">
                   Frequently Asked Questions
                 </Link>
               </li>
@@ -113,22 +113,22 @@ const Footer = () => {
             <h6 className="fw-bold text-dark mb-3 fs-6">Company & Legal</h6>
             <ul className="list-unstyled d-flex flex-column gap-2 small mb-4">
               <li>
-                <Link to="/about" className="text-decoration-none text-muted hover-primary">
+                <Link href="/about" className="text-decoration-none text-muted hover-primary">
                   About QuickBills
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-decoration-none text-muted hover-primary">
+                <Link href="/contact" className="text-decoration-none text-muted hover-primary">
                   Contact & Support
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-decoration-none text-muted hover-primary">
+                <Link href="/privacy" className="text-decoration-none text-muted hover-primary">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-decoration-none text-muted hover-primary">
+                <Link href="/terms" className="text-decoration-none text-muted hover-primary">
                   Terms of Use
                 </Link>
               </li>
@@ -139,18 +139,18 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-top pt-4 mt-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-muted">
           <div>
-            &copy; {new Date().getFullYear()} QuickBills. All rights reserved. Free online invoice maker.
+            &copy; 2026 QuickBills. All rights reserved. Free online invoice maker.
           </div>
           <div className="d-flex align-items-center gap-3">
-            <Link to="/privacy" className="text-decoration-none text-muted hover-primary">
+            <Link href="/privacy" className="text-decoration-none text-muted hover-primary">
               Privacy
             </Link>
             <span>•</span>
-            <Link to="/terms" className="text-decoration-none text-muted hover-primary">
+            <Link href="/terms" className="text-decoration-none text-muted hover-primary">
               Terms
             </Link>
             <span>•</span>
-            <Link to="/faq" className="text-decoration-none text-muted hover-primary">
+            <Link href="/faq" className="text-decoration-none text-muted hover-primary">
               Help
             </Link>
           </div>

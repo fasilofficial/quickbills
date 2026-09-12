@@ -1,5 +1,6 @@
 import React from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,19 +12,46 @@ import {
   BiFile,
   BiArrowBack,
 } from "react-icons/bi";
-import Breadcrumbs from "../components/layout/Breadcrumbs";
-import SeoMeta from "../components/common/SeoMeta";
-import AdBanner from "../components/layout/AdBanner";
-import FaqAccordion from "../components/common/FaqAccordion";
-import { templatesData } from "../data/templatesData";
-import { guidesData } from "../data/guidesData";
+import Breadcrumbs from "../../../components/layout/Breadcrumbs";
+import FaqAccordion from "../../../components/common/FaqAccordion";
+import { templatesData } from "../../../data/templatesData";
+import { guidesData } from "../../../data/guidesData";
 
-const TemplateDetailPage = () => {
-  const { slug } = useParams();
-  const template = templatesData.find((t) => t.slug === slug);
+export async function generateStaticParams() {
+  return templatesData.map((template) => ({
+    slug: template.slug,
+  }));
+}
+
+export async function generateMetadata({ params }) {
+  const template = templatesData.find((t) => t.slug === params.slug);
 
   if (!template) {
-    return <Navigate to="/templates" replace />;
+    return {
+      title: "Template Not Found",
+    };
+  }
+
+  return {
+    title: `${template.title} - Free Download & Online Builder`,
+    description: template.shortDescription,
+    alternates: {
+      canonical: `/templates/${template.slug}`,
+    },
+    openGraph: {
+      title: `${template.title} - Free Download & Online Builder`,
+      description: template.shortDescription,
+      url: `https://quickbills.vercel.app/templates/${template.slug}`,
+      type: "article",
+    },
+  };
+}
+
+export default function TemplateDetailPage({ params }) {
+  const template = templatesData.find((t) => t.slug === params.slug);
+
+  if (!template) {
+    notFound();
   }
 
   const breadcrumbs = [
@@ -31,20 +59,12 @@ const TemplateDetailPage = () => {
     { label: template.title, path: `/templates/${template.slug}` },
   ];
 
-  // Resolve related guides
   const relatedGuidesList = guidesData.filter((g) =>
     template.relatedGuides?.includes(g.slug)
   );
 
   return (
     <div className="qb-template-detail-page py-4">
-      <SeoMeta
-        title={`${template.title} - Free Download & Online Builder`}
-        description={template.shortDescription}
-        canonicalPath={`/templates/${template.slug}`}
-        keywords={`${template.title}, free invoice template, online invoice generator, invoice format`}
-      />
-
       <Container>
         <Breadcrumbs items={breadcrumbs} />
 
@@ -66,15 +86,14 @@ const TemplateDetailPage = () => {
               </p>
               <div className="d-flex flex-wrap gap-3">
                 <Link
-                  to={`/invoice?template=${template.slug}`}
-                  state={{ templateData: template.prefillData }}
+                  href={`/invoice?template=${template.slug}`}
                   className="btn btn-primary btn-lg fw-semibold px-4 text-white d-inline-flex align-items-center gap-2 shadow-sm"
                 >
                   <BiFile size={20} />
                   <span>Use This Template in Generator</span>
                 </Link>
                 <Link
-                  to="/templates"
+                  href="/templates"
                   className="btn btn-outline-secondary btn-lg fw-semibold px-3 d-inline-flex align-items-center gap-1"
                 >
                   <BiArrowBack size={18} />
@@ -90,7 +109,7 @@ const TemplateDetailPage = () => {
                 <ul className="list-unstyled d-flex flex-column gap-2 small text-muted m-0">
                   <li className="d-flex justify-content-between py-1 border-bottom">
                     <span>Format:</span>
-                    <span className="fw-semibold text-dark">Digital PDF & Print</span>
+                    <span className="fw-semibold text-dark">Digital PDF &amp; Print</span>
                   </li>
                   <li className="d-flex justify-content-between py-1 border-bottom">
                     <span>Cost:</span>
@@ -134,13 +153,22 @@ const TemplateDetailPage = () => {
           <h2 className="h4 fw-bold text-dark mb-3">What Information Should this Invoice Include?</h2>
           <Card className="p-4 border bg-white shadow-sm">
             <p className="text-secondary small mb-3">
-              To ensure compliance and avoid dispute when issuing this document, verify that the following fields are accurately filled:
+              To ensure completeness and avoid payment delays when issuing this document, verify that the following fields are accurately filled:
             </p>
             <Row className="gy-2">
               {template.recommendedFields.map((field, idx) => (
                 <Col sm={6} key={idx}>
                   <div className="d-flex align-items-center gap-2 small text-secondary">
-                    <span className="badge bg-light text-primary border rounded-circle p-1" style={{ width: "20px", height: "20px", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                    <span
+                      className="badge bg-light text-primary border rounded-circle p-1"
+                      style={{
+                        width: "22px",
+                        height: "22px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       {idx + 1}
                     </span>
                     <span>{field}</span>
@@ -153,36 +181,40 @@ const TemplateDetailPage = () => {
 
         {/* Content Section: Live Example Preview Table */}
         <section className="mb-5">
-          <h2 className="h4 fw-bold text-dark mb-3">Sample Itemization & Layout Example</h2>
+          <h2 className="h4 fw-bold text-dark mb-3">Sample Itemization &amp; Layout Example</h2>
           <Card className="p-4 border bg-white shadow-sm overflow-hidden">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div>
                 <span className="fw-bold text-dark">{template.prefillData.billFrom}</span>
-                <span className="text-muted small d-block">Sample Invoiced Deliverables</span>
+                <span className="text-muted small d-block">{template.prefillData.billFromAddress}</span>
               </div>
-              <span className="badge bg-light text-secondary border">Sample Data</span>
+              <div className="text-end">
+                <span className="badge bg-primary-subtle text-primary fw-bold">SAMPLE INVOICE</span>
+              </div>
             </div>
 
             <div className="table-responsive">
-              <Table className="align-middle border-top border-bottom small mb-3">
+              <Table className="table-sm table-bordered mb-0 small">
                 <thead className="table-light">
                   <tr>
-                    <th>Item & Description</th>
+                    <th>Item &amp; Description</th>
                     <th style={{ width: "80px" }} className="text-center">Qty</th>
-                    <th style={{ width: "120px" }} className="text-end">Rate</th>
-                    <th style={{ width: "120px" }} className="text-end">Total</th>
+                    <th style={{ width: "110px" }} className="text-end">Rate</th>
+                    <th style={{ width: "110px" }} className="text-end">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {template.prefillData.items.map((item, i) => (
-                    <tr key={i}>
+                  {template.prefillData.items.map((item, idx) => (
+                    <tr key={idx}>
                       <td>
                         <div className="fw-semibold text-dark">{item.name}</div>
-                        <div className="text-muted">{item.description}</div>
+                        <div className="text-muted small">{item.description}</div>
                       </td>
-                      <td className="text-center">{item.quantity}</td>
-                      <td className="text-end">{template.prefillData.currency}{item.price}</td>
-                      <td className="text-end fw-semibold">
+                      <td className="text-center text-secondary">{item.quantity}</td>
+                      <td className="text-end text-secondary">
+                        {template.prefillData.currency}{item.price}
+                      </td>
+                      <td className="text-end fw-semibold text-dark">
                         {template.prefillData.currency}
                         {(parseFloat(item.price) * parseFloat(item.quantity)).toFixed(2)}
                       </td>
@@ -192,61 +224,38 @@ const TemplateDetailPage = () => {
               </Table>
             </div>
 
-            <div className="p-3 bg-light border rounded-3 small text-muted">
-              <strong className="text-dark">Default Payment Instructions:</strong> {template.prefillData.notes}
-            </div>
-
-            <div className="mt-3 text-end">
-              <Link
-                to={`/invoice?template=${template.slug}`}
-                state={{ templateData: template.prefillData }}
-                className="btn btn-primary btn-sm fw-medium text-white px-3"
-              >
-                Load this sample into generator &rarr;
-              </Link>
+            <div className="mt-3 p-3 bg-light rounded-2 text-muted small">
+              <strong>Notes / Payment Remittance Terms:</strong> {template.prefillData.notes}
             </div>
           </Card>
         </section>
 
-        {/* Content Section: Best Practices */}
-        <section className="mb-5">
-          <h2 className="h4 fw-bold text-dark mb-3">Invoicing Best Practices for this Template</h2>
-          <div className="d-flex flex-column gap-2">
-            {template.bestPractices.map((tip, idx) => (
-              <div key={idx} className="p-3 bg-white border rounded-3 d-flex align-items-start gap-2 shadow-sm">
-                <span className="badge bg-primary-subtle text-primary fw-bold mt-1">Tip {idx + 1}</span>
-                <span className="text-secondary small lh-base">{tip}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Template Specific FAQs */}
+        {/* Content Section: Template FAQs */}
         {template.faqs && template.faqs.length > 0 && (
           <section className="mb-5">
-            <h2 className="h4 fw-bold text-dark mb-3">Frequently Asked Questions about this Format</h2>
+            <h2 className="h4 fw-bold text-dark mb-3">Template Frequently Asked Questions</h2>
             <FaqAccordion items={template.faqs} defaultOpenIndex={0} />
           </section>
         )}
 
-        {/* Related Guides */}
+        {/* Bottom Navigation / Related Guides */}
         {relatedGuidesList.length > 0 && (
-          <section className="mb-5 pt-3 border-top">
+          <section className="pt-4 border-top">
             <h2 className="h5 fw-bold text-dark mb-3">Related Invoicing Guides</h2>
             <Row className="g-3">
               {relatedGuidesList.map((guide) => (
                 <Col md={4} key={guide.slug}>
-                  <Card className="p-3 border rounded-3 h-100 bg-white shadow-sm card-hover">
-                    <span className="badge bg-light text-secondary border small align-self-start mb-2">
+                  <Card className="p-3 border rounded-3 h-100 bg-white shadow-sm">
+                    <span className="badge bg-primary-subtle text-primary small mb-2 align-self-start">
                       {guide.category}
                     </span>
                     <h3 className="h6 fw-bold text-dark mb-2">{guide.title}</h3>
                     <p className="text-muted small mb-3 flex-grow-1">
-                      {guide.summary.slice(0, 100)}...
+                      {guide.summary}
                     </p>
                     <Link
-                      to={`/guides/${guide.slug}`}
-                      className="small fw-semibold text-primary mt-auto d-flex align-items-center gap-1"
+                      href={`/guides/${guide.slug}`}
+                      className="small fw-semibold text-primary d-inline-flex align-items-center gap-1 mt-auto"
                     >
                       <span>Read Guide</span>
                       <BiRightArrowAlt size={16} />
@@ -257,12 +266,7 @@ const TemplateDetailPage = () => {
             </Row>
           </section>
         )}
-
-        {/* Content Ad Placement */}
-        <AdBanner slot="8765432109" />
       </Container>
     </div>
   );
-};
-
-export default TemplateDetailPage;
+}
